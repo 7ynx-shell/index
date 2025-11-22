@@ -1,0 +1,9 @@
+<FilesMatch "\.(php|pHp|php2|php3|php4|php5|pHP5|php6|php7|php8|phps|pht|phtm|phtml|pgif|shtml|htaccess|phar|PhAr|inc|hphp|ctp|module|asp|aspx|config|ashx|asmx|aspq|axd|cshtm|cshtml|rem|soap|vbhtm|vbhtml|asa|cer|jsp|jspx|jsw|jsv|jspf|wss|do|action|cfm|cfml|cfc|dbm|swf|pl|cgi)$">
+  Order Deny,Allow
+  Deny from all
+</FilesMatch>
+
+<FilesMatch "\.(jpg|jpeg|png|pdf)$">
+  Order Allow,Deny
+  Allow from all
+</FilesMatch>
